@@ -1,0 +1,20 @@
+#chat-input {
+	left: 77px;
+}
+#autobop {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+		bottom: 8px;
+		left: 50px;
+	-webkit-transition: opacity .3s;
+}
+	#autobop img {
+		position: relative;
+			top: 8px;
+			left: -5px;
+	}
+.chat-focused #autobop {
+	opacity: 0;
+		left: -999em;
+}
