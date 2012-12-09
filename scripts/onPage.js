@@ -1,5 +1,5 @@
 
-var scripts = ['scripts/libs/ttObjects.js', 'scripts/libs/sugar-1.3.6-custom.min.js', 'scripts/script.js'];
+var scripts = ['scripts/libs/sugar-1.3.6-custom.min.js', 'scripts/script.js'];
 
 
 for (i=0; i < scripts.length; i++) {

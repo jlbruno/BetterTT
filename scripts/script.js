@@ -31,8 +31,8 @@ var BetterTTFunc = function() {
 		//console.log('NEW SONG');
 		if (BetterTT.config.autobop) {
 
-			var min = 5000;
-			var max = 30000;
+			var min = 10000;
+			var max = 40000;
 			var rand = Math.floor(Math.random() * (max - min + 1)) + min;
 
 			setTimeout(function () {
@@ -44,54 +44,11 @@ var BetterTTFunc = function() {
 
 
 
-	var voteUpTTObjects = function() {
-		console.info('BTT: trying to vote up');
-
-		// USING TTObjects
-		ttObjects.getRoom();
-		ttObjects.getManager();
-		ttObjects.getApi();
-		console.log(ttObjects);
-
-		ttObjects.api({
-		  api: 'room.vote',
-		  roomid: ttObjects.room.roomId,
-		  val: "upvote",
-		  vh: $.sha1(ttObjects.room.roomId + "upvote" + ttObjects.room.currentSong._id),
-		  th: $.sha1(Math.random() + ""),
-		  ph: $.sha1(Math.random() + "")
-		});
-
-	}
-
 	var voteUp = function() {
 		$('#chat-input').val('/up'); $('#chat-form').submit();
 
 	};
 
-	var voteUpOrig = function() {
-		console.info('BTT: trying to vote up');
-
-		if(!$tt) {
-			
-			if(turntable){ var $tt=window.turntable; }//grab turntable object
-			if($tt){
-				for(i in $tt){
-					var $tt_roomkey=$tt[i]; break; //grab roomkey object
-				}
-			}
-			if($tt_roomkey){
-				for(i in $tt_roomkey){
-					if($tt_roomkey[i] && $tt_roomkey[i].callback) {
-						var $tt_vote=$tt_roomkey[i]; break; //grab object for callback
-					}
-				}
-			}
-		}
-		$tt_vote.callback("upvote"); //vote
-
-
-	};
 
 	var chatSize = function() {
 		console.log('chat bar width', $('#right-panel'), $('#right-panel').width());
@@ -107,13 +64,15 @@ var BetterTTFunc = function() {
 			var urlOff = $img.data('url-off');
 			var urlOn = $img.data('url-on');
 
+			console.log(BetterTT.config.autobop);
+
 			if ( BetterTT.config.autobop ) {
 				$img.attr('src', urlOn);
+				voteUp();
 			} else {
 				$img.attr('src', urlOff);
 			}
 
-			console.log(BetterTT.config.autobop);
 		});
 	}();
 
